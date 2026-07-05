@@ -1,141 +1,176 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { useState } from "react"
-import { cn } from "@/lib/utils"
+import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
 import {
-  LayoutDashboard, Settings, Briefcase, Award, Code2,
-  FolderGit2, PenTool, MessageSquare, Image as ImageIcon,
-  Menu, X, ExternalLink, LogOut, ChevronRight
+  LayoutDashboard,
+  Settings,
+  Briefcase,
+  Award,
+  Code2,
+  FileText,
+  PenTool,
+  MessageSquare,
+  Image as ImageIcon,
+  Menu,
+  X,
+  ExternalLink,
+  LogOut,
+  Mail,
+  Tags
 } from "lucide-react"
 
-const ADMIN_LINKS = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard, exact: true },
-  { name: "Site Settings", href: "/admin/site-settings", icon: Settings },
-  { name: "Experience", href: "/admin/experience", icon: Briefcase },
-  { name: "Certifications", href: "/admin/certifications", icon: Award },
-  { name: "Skills", href: "/admin/skills", icon: Code2 },
-  { name: "Projects", href: "/admin/projects", icon: FolderGit2 },
-  { name: "Writing", href: "/admin/writing", icon: PenTool },
-  { name: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
-  { name: "Messages", href: "/admin/messages", icon: MessageSquare },
-  { name: "Media", href: "/admin/media", icon: ImageIcon },
+const NAV_ITEMS = [
+  { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
+  { label: "Site Settings", href: "/admin/site-settings", icon: Settings },
+  { label: "Experience", href: "/admin/experience", icon: Briefcase },
+  { label: "Certifications", href: "/admin/certifications", icon: Award },
+  { label: "Skills", href: "/admin/skills", icon: Code2 },
+  { label: "Projects", href: "/admin/projects", icon: FileText },
+  { label: "Writing", href: "/admin/writing", icon: PenTool },
+  { label: "Testimonials", href: "/admin/testimonials", icon: MessageSquare },
+  { label: "Messages", href: "/admin/messages", icon: Mail },
+  { label: "Media Library", href: "/admin/media", icon: ImageIcon },
+]
+
+const BLOG_ITEMS = [
+  { label: "All Posts", href: "/admin/blog", icon: PenTool },
+  { label: "Tags", href: "/admin/blog/tags", icon: Tags },
+  { label: "Newsletter", href: "/admin/newsletter", icon: Mail },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
   const pathname = usePathname()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const router = useRouter()
 
-  // Login page gets no sidebar
-  if (pathname === "/admin/login") {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        {children}
-      </div>
-    )
+  const handleLogout = async () => {
+    await fetch("/admin/logout", { method: "POST" })
+    router.push("/admin/login")
   }
 
-  return (
-    <div className="min-h-screen bg-background flex">
-      {/* ── Sidebar ── */}
-      <aside className={cn(
-        "fixed inset-y-0 left-0 z-40 w-64 bg-card border-r border-border flex flex-col transition-transform duration-200",
-        "md:relative md:translate-x-0",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      )}>
-        {/* Logo */}
-        <div className="p-6 border-b border-border">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-              <span className="text-primary font-bold font-mono text-sm">A</span>
-            </div>
-            <div>
-              <div className="font-serif font-bold text-primary leading-none">Career OS</div>
-              <div className="text-[10px] text-muted-foreground mt-0.5 font-mono uppercase tracking-wider">Admin</div>
-            </div>
-          </div>
-        </div>
+  // Check if we are on the login page, if so don't render layout
+  if (pathname === "/admin/login") {
+    return <>{children}</>
+  }
 
-        {/* Nav links */}
-        <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-0.5">
-          {ADMIN_LINKS.map((link) => {
-            const isActive = link.exact
-              ? pathname === link.href
-              : pathname === link.href || pathname.startsWith(link.href + "/")
-            const Icon = link.icon
+  const Sidebar = () => (
+    <div className="flex flex-col h-full bg-[#0A0A0B] border-r border-[#2A2A2D]">
+      <div className="p-6 flex items-center justify-between border-b border-[#2A2A2D]">
+        <Link href="/admin" className="font-serif font-bold text-xl text-[#EDEDEF]">
+          Career OS <span className="text-[#D4A853]">Admin</span>
+        </Link>
+        <button className="md:hidden" onClick={() => setIsMobileOpen(false)}>
+          <X className="w-5 h-5 text-[#8A8A8E]" />
+        </button>
+      </div>
+
+      <div className="flex-1 overflow-y-auto py-4">
+        <div className="px-4 mb-2 text-xs font-bold text-[#8A8A8E] uppercase tracking-wider">Content</div>
+        <nav className="px-3 space-y-1 mb-8">
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href
+            const Icon = item.icon
             return (
               <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setSidebarOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group",
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
                   isActive
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
+                    ? "bg-[#D4A853]/10 text-[#D4A853] font-medium"
+                    : "text-[#8A8A8E] hover:text-[#EDEDEF] hover:bg-[#1C1C1F]"
+                }`}
               >
-                <Icon className="w-4 h-4 shrink-0" />
-                <span className="flex-1">{link.name}</span>
-                {isActive && <ChevronRight className="w-3 h-3" />}
+                <Icon className={`w-4 h-4 ${isActive ? "text-[#D4A853]" : ""}`} />
+                {item.label}
               </Link>
             )
           })}
         </nav>
 
-        {/* Footer */}
-        <div className="p-3 border-t border-border space-y-0.5">
-          <Link
-            href="/"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <ExternalLink className="w-4 h-4" /> View Live Site
-          </Link>
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors">
-            <LogOut className="w-4 h-4" /> Logout
-          </button>
-        </div>
+        <div className="px-4 mb-2 text-xs font-bold text-[#8A8A8E] uppercase tracking-wider">Blog Engine</div>
+        <nav className="px-3 space-y-1">
+          {BLOG_ITEMS.map((item) => {
+            const isActive = pathname === item.href || (item.href !== "/admin/blog" && pathname.startsWith(item.href)) || (item.href === "/admin/blog" && pathname.startsWith("/admin/blog") && !pathname.includes("tags"))
+            const Icon = item.icon
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                  isActive
+                    ? "bg-[#D4A853]/10 text-[#D4A853] font-medium"
+                    : "text-[#8A8A8E] hover:text-[#EDEDEF] hover:bg-[#1C1C1F]"
+                }`}
+              >
+                <Icon className={`w-4 h-4 ${isActive ? "text-[#D4A853]" : ""}`} />
+                {item.label}
+              </Link>
+            )
+          })}
+        </nav>
+      </div>
+
+      <div className="p-4 border-t border-[#2A2A2D]">
+        <Link
+          href="/"
+          target="_blank"
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-[#8A8A8E] hover:text-[#EDEDEF] hover:bg-[#1C1C1F] transition-colors mb-2"
+        >
+          <ExternalLink className="w-4 h-4" />
+          View Live Site
+        </Link>
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-red-400 hover:text-red-300 hover:bg-red-400/10 transition-colors"
+        >
+          <LogOut className="w-4 h-4" />
+          Log Out
+        </button>
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="min-h-screen bg-[#0A0A0B] flex text-[#EDEDEF]">
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:block w-64 fixed inset-y-0 z-50">
+        <Sidebar />
       </aside>
 
-      {/* ── Mobile overlay ── */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-30 md:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
+      {/* Mobile Sidebar Overlay */}
+      {isMobileOpen && (
+        <div className="md:hidden fixed inset-0 z-50 flex">
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsMobileOpen(false)} />
+          <div className="relative w-64 max-w-[80%] h-full bg-[#0A0A0B]">
+            <Sidebar />
+          </div>
+        </div>
       )}
 
-      {/* ── Main area ── */}
-      <div className="flex-1 flex flex-col min-h-screen overflow-hidden">
-        {/* Top bar */}
-        <header className="h-14 border-b border-border bg-card flex items-center gap-4 px-4 md:px-6 shrink-0">
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="md:hidden p-2 -ml-2 text-muted-foreground"
-          >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-          <div className="flex-1">
-            <span className="text-sm font-medium text-muted-foreground capitalize">
-              {pathname.replace("/admin", "").replace("/", "").replace(/-/g, " ") || "Dashboard"}
-            </span>
+      {/* Main Content */}
+      <main className="flex-1 md:ml-64 flex flex-col min-h-screen">
+        <header className="h-16 border-b border-[#2A2A2D] bg-[#0A0A0B]/80 backdrop-blur-md sticky top-0 z-40 px-4 md:px-8 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button className="md:hidden" onClick={() => setIsMobileOpen(true)}>
+              <Menu className="w-5 h-5 text-[#8A8A8E]" />
+            </button>
+            <h2 className="text-lg font-bold">
+              {NAV_ITEMS.find(i => i.href === pathname)?.label || BLOG_ITEMS.find(i => i.href === pathname)?.label || "Admin"}
+            </h2>
           </div>
-          <Link
-            href="/"
-            className="text-xs font-mono text-muted-foreground hover:text-primary flex items-center gap-1.5 transition-colors"
-          >
-            <ExternalLink className="w-3 h-3" /> Live site
-          </Link>
+          <div className="flex items-center gap-4">
+            <div className="w-8 h-8 rounded-full bg-[#D4A853] flex items-center justify-center text-[#0A0A0B] font-bold text-sm">
+              A
+            </div>
+          </div>
         </header>
 
-        {/* Content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-8">
-          <div className="max-w-6xl mx-auto">
-            {children}
-          </div>
-        </main>
-      </div>
+        <div className="p-4 md:p-8 flex-1 overflow-x-hidden">
+          {children}
+        </div>
+      </main>
     </div>
   )
 }
