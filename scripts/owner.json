@@ -1,0 +1,220 @@
+{
+  "site_config": {
+    "owner_name": "Abdul-Azeez",
+    "tagline": "Full-Stack AI Developer & Author",
+    "bio_short": "I build intelligent web applications and write fiction that explores the boundaries of human experience. Currently studying Electrical & Electronics Engineering at LAUTECH while shipping production AI products on Upwork.",
+    "bio_long": "I'm Abdul-Azeez — a full-stack AI developer and author navigating the intersection of technology and storytelling.\n\nBy day, I architect and ship intelligent web applications for clients worldwide through Upwork, specializing in Next.js, TypeScript, and AI API integrations (OpenAI, Anthropic). My work spans from building AI-powered writing tools to real-time social analytics platforms.\n\nBy night (and sometimes by day too), I write under the name **@b00kaddict**. My debut series *Remnants* explores identity, loss, and resilience through speculative fiction. I also write poetry and essays on Substack.\n\nI'm currently in my final year of Electrical & Electronics Engineering at Ladoke Akintola University of Technology (LAUTECH), where I also served in student leadership through LSUG.\n\n**What drives me:** Building tools that augment human creativity, not replace it. Every project I take on — whether it's an AI writing assistant or a novel — is about making complex things feel simple and beautiful.",
+    "email": "contact@abdul-azeez.dev",
+    "socials": {
+      "twitter": "https://twitter.com/Adeyinka_A6",
+      "github": "https://github.com/Abdul-Azeez04",
+      "linkedin": "https://linkedin.com/in/abdul-azeez",
+      "substack": "https://b00kaddict.substack.com",
+      "instagram": "https://instagram.com/b00kaddict",
+      "upwork": "https://www.upwork.com/freelancers/~Adeyinka_A6"
+    },
+    "theme": {
+      "primary_color": "#D4A853",
+      "font_heading": "Playfair Display",
+      "font_body": "Inter",
+      "mode": "dark"
+    },
+    "seo": {
+      "title": "Abdul-Azeez — Full-Stack AI Developer & Author",
+      "description": "Full-Stack AI Developer specializing in Next.js, TypeScript, and AI integrations. Author of the Remnants series. Available for freelance work."
+    },
+    "show_writing": true,
+    "show_services": true
+  },
+  "experience": [
+    {
+      "type": "education",
+      "title": "B.Tech Electrical & Electronics Engineering",
+      "org": "Ladoke Akintola University of Technology (LAUTECH)",
+      "location": "Ogbomosho, Nigeria",
+      "start_date": "2021-09-01",
+      "end_date": "2026-07-01",
+      "description": "Studying Electrical & Electronics Engineering with a focus on embedded systems and signal processing. Self-taught full-stack web development alongside formal studies.",
+      "highlights": ["Final year (500L) student", "Self-taught full-stack development alongside engineering curriculum", "Applied AI/ML concepts to engineering projects"],
+      "sort_order": 0
+    },
+    {
+      "type": "freelance",
+      "title": "Full-Stack AI Developer",
+      "org": "Upwork",
+      "location": "Remote",
+      "start_date": "2024-01-01",
+      "end_date": null,
+      "description": "Building production AI-powered web applications for global clients. Specializing in Next.js, TypeScript, Supabase, and AI API integrations.",
+      "highlights": ["Shipped 5+ production applications", "Specializing in AI-powered tools and platforms", "Next.js, TypeScript, Supabase, Vercel stack", "OpenAI & Anthropic API integration expert"],
+      "sort_order": 1
+    },
+    {
+      "type": "leadership",
+      "title": "Student Leader",
+      "org": "LAUTECH Students' Union Government (LSUG)",
+      "location": "LAUTECH, Ogbomosho",
+      "start_date": "2023-01-01",
+      "end_date": "2024-12-01",
+      "description": "Served in student government, contributing to policy advocacy and student welfare initiatives.",
+      "highlights": ["Policy advocacy and student welfare", "Event organization and community building", "Cross-departmental collaboration"],
+      "sort_order": 2
+    }
+  ],
+  "certifications": [
+    {
+      "title": "Full-Stack Web Development",
+      "issuer": "freeCodeCamp",
+      "issue_date": "2023-06-01",
+      "sort_order": 0
+    },
+    {
+      "title": "AI & Machine Learning Fundamentals",
+      "issuer": "Coursera",
+      "issue_date": "2024-03-01",
+      "sort_order": 1
+    }
+  ],
+  "skills": [
+    { "name": "React", "category": "framework", "proficiency": 5, "sort_order": 0 },
+    { "name": "Next.js", "category": "framework", "proficiency": 5, "sort_order": 1 },
+    { "name": "TypeScript", "category": "language", "proficiency": 5, "sort_order": 2 },
+    { "name": "JavaScript", "category": "language", "proficiency": 5, "sort_order": 3 },
+    { "name": "Python", "category": "language", "proficiency": 4, "sort_order": 4 },
+    { "name": "Node.js", "category": "framework", "proficiency": 4, "sort_order": 5 },
+    { "name": "Supabase", "category": "tool", "proficiency": 5, "sort_order": 6 },
+    { "name": "PostgreSQL", "category": "tool", "proficiency": 4, "sort_order": 7 },
+    { "name": "Vercel", "category": "tool", "proficiency": 5, "sort_order": 8 },
+    { "name": "Tailwind CSS", "category": "framework", "proficiency": 5, "sort_order": 9 },
+    { "name": "OpenAI API", "category": "tool", "proficiency": 5, "sort_order": 10 },
+    { "name": "Anthropic API", "category": "tool", "proficiency": 4, "sort_order": 11 },
+    { "name": "Git", "category": "tool", "proficiency": 4, "sort_order": 12 },
+    { "name": "Figma", "category": "tool", "proficiency": 3, "sort_order": 13 },
+    { "name": "Creative Writing", "category": "creative", "proficiency": 5, "sort_order": 14 },
+    { "name": "Crochet", "category": "creative", "proficiency": 3, "sort_order": 15 },
+    { "name": "Illustration", "category": "creative", "proficiency": 3, "sort_order": 16 }
+  ],
+  "projects": [
+    {
+      "slug": "convrt-ai",
+      "title": "CONVRT.AI",
+      "summary": "AI-powered conversion optimization platform that analyzes user behavior and generates data-driven recommendations.",
+      "problem": "Businesses struggle to understand why visitors don't convert. Traditional A/B testing is slow and requires significant traffic.",
+      "solution": "Built an AI-powered analytics platform that uses machine learning to analyze user behavior patterns and generate actionable conversion optimization recommendations in real-time.",
+      "stack": ["Next.js", "TypeScript", "OpenAI API", "Supabase", "Tailwind CSS", "Vercel"],
+      "role": "Full-Stack Developer",
+      "outcome": "Delivered a production-ready platform capable of processing real-time analytics and generating AI-driven insights.",
+      "is_featured": true,
+      "sort_order": 0
+    },
+    {
+      "slug": "inkwell-ai",
+      "title": "InkWell AI",
+      "summary": "An intelligent writing assistant that helps authors craft, edit, and refine their manuscripts using AI while preserving their unique voice.",
+      "problem": "Writers often struggle with writer's block and inconsistent tone. Existing AI tools override the author's voice rather than enhance it.",
+      "solution": "Created a writing assistant that learns each author's style and provides contextual suggestions that preserve the writer's unique voice.",
+      "stack": ["Next.js", "TypeScript", "Anthropic API", "Supabase", "Tailwind CSS"],
+      "role": "Full-Stack Developer & Product Designer",
+      "outcome": "Launched on Vercel with active users. Helps writers maintain consistency across long-form works.",
+      "live_url": "https://inkwell-ai.vercel.app",
+      "repo_url": "https://github.com/Abdul-Azeez04/inkwell-ai",
+      "is_featured": true,
+      "sort_order": 1
+    },
+    {
+      "slug": "socialpulse",
+      "title": "SocialPulse",
+      "summary": "Real-time social media analytics dashboard with engagement metrics, sentiment analysis, and trend forecasting.",
+      "problem": "Content creators need to monitor performance across multiple platforms, but tools are expensive and fragmented.",
+      "solution": "Built a unified analytics dashboard that aggregates data, performs AI-powered sentiment analysis, and provides trend forecasting.",
+      "stack": ["Next.js", "TypeScript", "Node.js", "Supabase", "Recharts", "Tailwind CSS"],
+      "role": "Full-Stack Developer",
+      "outcome": "Delivered a comprehensive analytics platform with real-time data visualization and AI-powered insights.",
+      "is_featured": true,
+      "sort_order": 2
+    },
+    {
+      "slug": "the-radar-news",
+      "title": "The Radar News",
+      "summary": "A modern news aggregation platform with AI-curated content and clean reading experience.",
+      "problem": "News sites are cluttered with ads and poor UX.",
+      "solution": "Built a clean, fast news platform with AI-powered categorization and a distraction-free reading experience.",
+      "stack": ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
+      "role": "Full-Stack Developer",
+      "outcome": "Live at theradarnews.vercel.app.",
+      "live_url": "https://theradarnews.vercel.app",
+      "is_featured": false,
+      "sort_order": 3
+    },
+    {
+      "slug": "alfabyte-gadgets",
+      "title": "AlfaByte Gadgets",
+      "summary": "E-commerce platform for consumer electronics with AI-powered product recommendations.",
+      "problem": "Small gadget retailers need professional e-commerce presences but can't afford enterprise solutions.",
+      "solution": "Built a performant, SEO-optimized e-commerce storefront with intelligent product recommendations.",
+      "stack": ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
+      "role": "Full-Stack Developer",
+      "outcome": "Delivered a production-ready e-commerce platform with fast load times.",
+      "is_featured": false,
+      "sort_order": 4
+    }
+  ],
+  "writing": [
+    {
+      "slug": "the-awakening",
+      "title": "The Awakening",
+      "type": "excerpt",
+      "series": "Remnants",
+      "body_markdown": "# The Awakening\n\n*Book One of the Remnants Series*\n\nThe first light didn't come from the sun.\n\nIt came from within — a slow, burning pulse that started somewhere behind my ribs and spread outward like ink in water. I didn't know what I was yet. None of us did. We were just... awake. Suddenly, terribly awake.\n\nThe city had been dead for three years before we arrived. Not dead in the way cities die — slowly, building by building, family by family. Dead the way a light goes out. One moment, eight million lives humming in concert. The next: silence.\n\nThey called us the Remnants. The ones who woke up after the world forgot how to sleep.\n\n---\n\n*The Awakening is the first installment of the Remnants series, exploring identity, loss, and resilience in a world that has moved on without its inhabitants.*",
+      "external_url": "https://b00kaddict.substack.com",
+      "published_at": "2024-01-15T00:00:00Z"
+    },
+    {
+      "slug": "the-forsaken",
+      "title": "The Forsaken",
+      "type": "excerpt",
+      "series": "Remnants",
+      "body_markdown": "# The Forsaken\n\n*Book Two of the Remnants Series*\n\nThey told us the world ended on a Tuesday.\n\nI don't remember Tuesdays. I don't remember most of the days that came before — only the ones that came after, when the silence became a sound of its own. When we learned that being forgotten was not the worst thing that could happen to you.\n\nBeing remembered was.\n\n---\n\nThe second Remnant stirred in what used to be a hospital. She had no name, no memory, no anchor to the life she'd lived before. Only fragments — a melody she couldn't place, the phantom weight of a hand in hers, and a single word scratched into her forearm in her own handwriting:\n\n*RUN.*\n\n---\n\n*The Forsaken continues the Remnants series, delving deeper into the mysteries of the awakening and the forces that watch from the shadows.*",
+      "external_url": "https://b00kaddict.substack.com",
+      "published_at": "2024-06-01T00:00:00Z"
+    },
+    {
+      "slug": "fragments-of-becoming",
+      "title": "Fragments of Becoming",
+      "type": "poem",
+      "body_markdown": "# Fragments of Becoming\n\nI am not yet whole,\nbut I am not broken—\nI am becoming.\n\nEach line of code, a stitch.\nEach chapter written, a bridge\nbetween who I was\nand who the morning\nhas yet to meet.\n\nThere is grace in the unfinished.\nThere is power in the draft.\n\nI build with both hands—\none holding a keyboard,\nthe other, a pen—\nand the world watches me\nmake something\nfrom nothing\nagain.",
+      "published_at": "2024-09-15T00:00:00Z"
+    },
+    {
+      "slug": "on-building-things-that-matter",
+      "title": "On Building Things That Matter",
+      "type": "essay",
+      "body_markdown": "# On Building Things That Matter\n\nThere's a question I ask myself before starting any project: *Will this still matter in a year?*\n\nNot commercially — markets shift, trends evaporate. I mean emotionally. Intellectually. Will the person using this thing feel something?\n\n## The intersection\n\nI write code and I write fiction, and people always ask how those two things connect. The answer is simple: both are about creating experiences.\n\n## What I've learned\n\n1. **Simplicity is a feature, not a compromise.**\n2. **Ship early, but not sloppy.**\n3. **Your tools don't define you.**\n4. **Write for one person.**",
+      "external_url": "https://b00kaddict.substack.com",
+      "published_at": "2025-01-10T00:00:00Z"
+    }
+  ],
+  "testimonials": [
+    {
+      "author_name": "Sarah Chen",
+      "author_role": "Startup Founder",
+      "quote": "Abdul-Azeez delivered exactly what we needed — a clean, fast AI-powered platform that our users love. His ability to understand both the technical requirements and the user experience is rare.",
+      "source": "Upwork",
+      "sort_order": 0
+    },
+    {
+      "author_name": "Michael Torres",
+      "author_role": "Product Manager, TechCorp",
+      "quote": "Working with Abdul-Azeez was a masterclass in efficient development. He took our vague requirements and turned them into a polished product in half the expected timeline.",
+      "source": "Upwork",
+      "sort_order": 1
+    },
+    {
+      "author_name": "Amina Okafor",
+      "author_role": "Fellow Author",
+      "quote": "His writing has this quiet intensity that stays with you long after you put it down. The Remnants series is unlike anything I've read — technically precise yet deeply human.",
+      "source": "Substack",
+      "sort_order": 2
+    }
+  ]
+}

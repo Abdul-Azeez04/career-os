@@ -1,26 +1,162 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #FAFAF9;
+    --foreground: #1A1A1B;
+    --card: #F0EFED;
+    --card-foreground: #1A1A1B;
+    --popover: #FAFAF9;
+    --popover-foreground: #1A1A1B;
+    --primary: #B8942E;
+    --primary-foreground: #FAFAF9;
+    --secondary: #E8E7E5;
+    --secondary-foreground: #1A1A1B;
+    --muted: #E8E7E5;
+    --muted-foreground: #6B6B6F;
+    --accent: #B8942E;
+    --accent-foreground: #FAFAF9;
+    --destructive: #CD2B31;
+    --destructive-foreground: #FAFAF9;
+    --border: #D5D4D2;
+    --input: #D5D4D2;
+    --ring: #B8942E;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: #0A0A0B;
+    --foreground: #EDEDEF;
+    --card: #141416;
+    --card-foreground: #EDEDEF;
+    --popover: #0A0A0B;
+    --popover-foreground: #EDEDEF;
+    --primary: #D4A853;
+    --primary-foreground: #0A0A0B;
+    --secondary: #1C1C1F;
+    --secondary-foreground: #EDEDEF;
+    --muted: #1C1C1F;
+    --muted-foreground: #8A8A8E;
+    --accent: #D4A853;
+    --accent-foreground: #0A0A0B;
+    --destructive: #E5484D;
+    --destructive-foreground: #0A0A0B;
+    --border: #2A2A2D;
+    --input: #2A2A2D;
+    --ring: #D4A853;
   }
 }
 
-body {
-  background: var(--background);
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom Prose Styles for Markdown */
+.prose {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  max-width: 65ch;
+}
+.prose p {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+  line-height: 1.75;
+}
+.prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.prose strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  color: var(--foreground);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+.prose h1 { font-size: 2.25em; }
+.prose h2 { font-size: 1.5em; }
+.prose h3 { font-size: 1.25em; }
+.prose code {
+  color: var(--foreground);
+  background-color: var(--muted);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.875em;
+  font-family: var(--font-mono);
+}
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+.prose pre {
+  background-color: var(--card);
+  padding: 1em;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+}
+.prose blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: 1em;
+  font-style: italic;
+  color: var(--muted-foreground);
+}
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
