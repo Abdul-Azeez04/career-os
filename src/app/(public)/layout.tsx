@@ -13,7 +13,7 @@ export default async function PublicLayout({ children }: { children: React.React
       <main className="flex-1 pt-20">
         {children}
       </main>
-      <Footer config={config} />
+      <Footer ownerName={config.owner_name} socials={config.socials} />
     </div>
   )
 }

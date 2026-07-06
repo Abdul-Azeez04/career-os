@@ -7,10 +7,7 @@ import { formatDate } from "@/lib/content-utils"
 import { TwitterIcon, LinkedinIcon } from "@/components/site/brand-icons"
 import { Metadata } from "next"
 
-export async function generateStaticParams() {
-  const posts = await getBlogPosts()
-  return posts.map((p) => ({ slug: p.slug }))
-}
+
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const p = await params

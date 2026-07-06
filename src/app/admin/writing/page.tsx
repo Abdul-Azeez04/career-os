@@ -69,7 +69,7 @@ export default function WritingAdmin() {
                   </span>
                 </td>
                 <td className="px-6 py-4 text-sm font-mono text-muted-foreground">
-                  {new Date(writing.published_at).toLocaleDateString()}
+                  {writing.published_at ? new Date(writing.published_at).toLocaleDateString() : "—"}
                 </td>
                 <td className="px-6 py-4 text-right">
                   <Link href={`/writing/${writing.slug}`} target="_blank" className="p-2 text-muted-foreground hover:text-foreground inline-block transition-colors">

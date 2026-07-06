@@ -7,10 +7,7 @@ import { GithubIcon } from "@/components/site/brand-icons"
 import { MarkdownRenderer } from "@/components/site/markdown-renderer"
 import { Metadata } from "next"
 
-export async function generateStaticParams() {
-  const projects = await getProjects()
-  return projects.map((p) => ({ slug: p.slug }))
-}
+
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const project = await getProjectBySlug(params.slug)

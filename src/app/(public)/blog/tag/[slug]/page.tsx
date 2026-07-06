@@ -4,10 +4,7 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { notFound } from "next/navigation"
 
-export async function generateStaticParams() {
-  const tags = await getAllBlogTags()
-  return tags.map((t) => ({ slug: t.slug }))
-}
+
 
 export default async function TagArchivePage({ params }: any) {
   const p = await params

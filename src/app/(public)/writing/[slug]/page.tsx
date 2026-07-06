@@ -7,17 +7,14 @@ import { readingTime, formatDate } from "@/lib/content-utils"
 import { Metadata } from "next"
 import { TwitterIcon, LinkedinIcon } from "@/components/site/brand-icons"
 
-export async function generateStaticParams() {
-  const writings = await getWritings()
-  return writings.map((w) => ({ slug: w.slug }))
-}
+
 
 export async function generateMetadata({ params }: any): Promise<Metadata> {
   const p = await params
   const writing = await getWritingBySlug(p.slug)
   const config = await getSiteConfig()
   if (!writing) return {}
-  const excerpt = writing.body_markdown.replace(/[#*`>\-]/g, "").substring(0, 160)
+  const excerpt = (writing.body_markdown || "").replace(/[#*`>\-]/g, "").substring(0, 160)
   return {
     title: `${writing.title} | ${config.owner_name}`,
     description: excerpt,
@@ -25,7 +22,7 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
       title: writing.title,
       description: excerpt,
       type: "article",
-      publishedTime: writing.published_at,
+      publishedTime: writing.published_at || undefined,
     },
     twitter: {
       card: "summary_large_image",
@@ -47,8 +44,8 @@ export default async function WritingDetail({ params }: any) {
     .filter((w) => w.slug !== writing.slug && (w.type === writing.type || w.series === writing.series))
     .slice(0, 2)
 
-  const rt = readingTime(writing.body_markdown)
-  const date = formatDate(writing.published_at)
+  const rt = readingTime(writing.body_markdown || "")
+  const date = formatDate(writing.published_at || new Date().toISOString())
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(writing.title)}&url=${encodeURIComponent(`/writing/${writing.slug}`)}`
   const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`/writing/${writing.slug}`)}`
 
@@ -92,7 +89,7 @@ export default async function WritingDetail({ params }: any) {
 
         {/* Body */}
         <div className="prose-custom">
-          <MarkdownRenderer content={writing.body_markdown} />
+          <MarkdownRenderer content={writing.body_markdown || ""} />
         </div>
 
         {/* External Link */}
