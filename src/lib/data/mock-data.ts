@@ -425,3 +425,61 @@ export const mockMessages: ContactMessage[] = [
     created_at: new Date().toISOString(),
   },
 ]
+
+export const mockBlogPosts: any[] = [
+  {
+    id: 'bp-1', slug: 'building-career-os-nextjs-supabase',
+    title: 'Building a Career OS with Next.js 15 and Supabase',
+    excerpt: 'How I designed a self-editable personal platform that doubles as a developer portfolio and author brand — and made it forkable.',
+    cover_image_url: null,
+    body_html: '<h2>The Problem</h2><p>Every developer needs a portfolio. Every author needs a platform. I needed both — without maintaining two separate sites.</p><h2>Architecture</h2><p>The solution is a single Next.js 15 application with a Supabase backend. Every piece of content is a database row, not hardcoded HTML.</p><h3>Key Decisions</h3><ul><li>Server components for public pages (SEO)</li><li>Client components for the admin dashboard (interactivity)</li><li>Row-Level Security so the public API is read-only</li></ul><h2>The Admin Dashboard</h2><p>The admin panel is a full CRUD interface for every content type — projects, writing, experience, skills, certifications, testimonials, and now blog posts.</p><blockquote><p>The best CMS is the one you actually use.</p></blockquote><h2>Making It Forkable</h2><p>One seed script, one set of environment variables, and anyone can deploy their own Career OS. The site_config table makes every deployment unique.</p>',
+    body_markdown: '## The Problem\n\nEvery developer needs a portfolio. Every author needs a platform. I needed both.\n\n## Architecture\n\nThe solution is a single Next.js 15 application with a Supabase backend.',
+    category: 'tutorial', tags: ['nextjs', 'supabase'],
+    status: 'published', scheduled_at: null,
+    published_at: '2026-07-01T00:00:00Z', view_count: 142,
+    reading_time_minutes: 8, seo_title: null, seo_description: null,
+    og_image_url: null, is_featured: true,
+    created_at: '2026-07-01T00:00:00Z', updated_at: '2026-07-01T00:00:00Z',
+  },
+  {
+    id: 'bp-2', slug: 'why-every-developer-should-write',
+    title: 'Why Every Developer Should Write',
+    excerpt: 'Writing forces clarity of thought. If you can explain a system in prose, you understand it. If you can not, you are guessing.',
+    cover_image_url: null,
+    body_html: '<h2>The Clarity Test</h2><p>Writing is thinking. When you write about a technical concept, you discover the gaps in your understanding.</p><h2>Compound Returns</h2><p>A blog post written today compounds forever. It builds your reputation, attracts opportunities, and helps others.</p><h2>Getting Started</h2><p>Start with what you just learned. Write the tutorial you wish existed. Ship it imperfect.</p>',
+    body_markdown: '## The Clarity Test\n\nWriting is thinking. When you write about a technical concept, you discover the gaps in your understanding.',
+    category: 'opinion', tags: ['career', 'writing-craft'],
+    status: 'published', scheduled_at: null,
+    published_at: '2026-06-20T00:00:00Z', view_count: 89,
+    reading_time_minutes: 5, seo_title: null, seo_description: null,
+    og_image_url: null, is_featured: false,
+    created_at: '2026-06-20T00:00:00Z', updated_at: '2026-06-20T00:00:00Z',
+  },
+  {
+    id: 'bp-3', slug: 'ai-assisted-workflow-2026',
+    title: 'My AI-Assisted Development Workflow in 2026',
+    excerpt: 'The tools I use daily — from AI pair programming to automated testing — and the philosophy behind choosing human-in-the-loop over full automation.',
+    cover_image_url: null,
+    body_html: '<h2>The Stack</h2><p>My current development workflow leans heavily on AI assistance, but always with a human making the final call.</p>',
+    body_markdown: '## The Stack\n\nMy current development workflow leans heavily on AI assistance.',
+    category: 'devlog', tags: ['ai-ml'],
+    status: 'draft', scheduled_at: null,
+    published_at: null, view_count: 0,
+    reading_time_minutes: 6, seo_title: null, seo_description: null,
+    og_image_url: null, is_featured: false,
+    created_at: '2026-07-04T00:00:00Z', updated_at: '2026-07-04T00:00:00Z',
+  },
+]
+
+export const mockBlogTags: any[] = [
+  { id: 'bt-1', name: 'AI & Machine Learning', slug: 'ai-ml', description: null, color: '#8B5CF6', created_at: '2026-01-01T00:00:00Z' },
+  { id: 'bt-2', name: 'Next.js', slug: 'nextjs', description: null, color: '#0EA5E9', created_at: '2026-01-01T00:00:00Z' },
+  { id: 'bt-3', name: 'Supabase', slug: 'supabase', description: null, color: '#22C55E', created_at: '2026-01-01T00:00:00Z' },
+  { id: 'bt-4', name: 'Career', slug: 'career', description: null, color: '#10B981', created_at: '2026-01-01T00:00:00Z' },
+  { id: 'bt-5', name: 'Writing', slug: 'writing-craft', description: null, color: '#F59E0B', created_at: '2026-01-01T00:00:00Z' },
+  { id: 'bt-6', name: 'Freelancing', slug: 'freelancing', description: null, color: '#D4A853', created_at: '2026-01-01T00:00:00Z' },
+]
+
+export const mockSubscribers: any[] = [
+  { id: 'ns-1', email: 'fan@example.com', name: 'Jane Reader', status: 'active', source: 'blog-post', subscribed_at: '2026-06-15T00:00:00Z' },
+]

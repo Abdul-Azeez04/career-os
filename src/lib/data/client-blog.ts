@@ -2,6 +2,7 @@
  * Client-side blog data functions (for admin 'use client' pages)
  */
 import type { BlogPost, BlogTag, NewsletterSubscriber } from './blog'
+import { mockBlogPosts, mockBlogTags, mockSubscribers } from './mock-data'
 
 const useMock = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true'
 
@@ -15,8 +16,7 @@ async function getClientSupabase() {
 
 export async function clientGetAllBlogPostsAdmin(): Promise<BlogPost[]> {
   if (useMock) {
-    const { getAllBlogPostsAdmin } = await import('./blog')
-    return getAllBlogPostsAdmin()
+    return mockBlogPosts as BlogPost[]
   }
   const supabase = await getClientSupabase()
   const { data, error } = await supabase.from('blog_posts').select('*').order('created_at', { ascending: false })
@@ -26,8 +26,7 @@ export async function clientGetAllBlogPostsAdmin(): Promise<BlogPost[]> {
 
 export async function clientGetBlogPostById(id: string): Promise<BlogPost | null> {
   if (useMock) {
-    const { getBlogPostById } = await import('./blog')
-    return getBlogPostById(id)
+    return mockBlogPosts.find((p: any) => p.id === id) as BlogPost ?? null
   }
   const supabase = await getClientSupabase()
   const { data, error } = await supabase.from('blog_posts').select('*').eq('id', id).single()
@@ -37,8 +36,7 @@ export async function clientGetBlogPostById(id: string): Promise<BlogPost | null
 
 export async function clientCreateBlogPost(input: any): Promise<BlogPost> {
   if (useMock) {
-    const { createBlogPost } = await import('./blog')
-    return createBlogPost(input)
+    return { ...mockBlogPosts[0], ...input, id: crypto.randomUUID(), created_at: new Date().toISOString(), updated_at: new Date().toISOString(), view_count: 0 } as BlogPost
   }
   const supabase = await getClientSupabase()
   const { data, error } = await supabase.from('blog_posts').insert(input).select().single()
@@ -48,8 +46,7 @@ export async function clientCreateBlogPost(input: any): Promise<BlogPost> {
 
 export async function clientUpdateBlogPost(id: string, updates: any): Promise<BlogPost> {
   if (useMock) {
-    const { updateBlogPost } = await import('./blog')
-    return updateBlogPost(id, updates)
+    return { ...mockBlogPosts[0], ...updates, id } as BlogPost
   }
   const supabase = await getClientSupabase()
   const { data, error } = await supabase.from('blog_posts').update({ ...updates, updated_at: new Date().toISOString() }).eq('id', id).select().single()
@@ -66,8 +63,7 @@ export async function clientDeleteBlogPost(id: string): Promise<void> {
 
 export async function clientGetAllBlogTags(): Promise<BlogTag[]> {
   if (useMock) {
-    const { getAllBlogTags } = await import('./blog')
-    return getAllBlogTags()
+    return mockBlogTags as BlogTag[]
   }
   const supabase = await getClientSupabase()
   const { data, error } = await supabase.from('blog_tags').select('*').order('name')
@@ -77,8 +73,7 @@ export async function clientGetAllBlogTags(): Promise<BlogTag[]> {
 
 export async function clientCreateBlogTag(input: any): Promise<BlogTag> {
   if (useMock) {
-    const { createBlogTag } = await import('./blog')
-    return createBlogTag(input)
+    return { ...input, id: crypto.randomUUID(), description: input.description ?? null, color: input.color ?? '#D4A853', created_at: new Date().toISOString() } as BlogTag
   }
   const supabase = await getClientSupabase()
   const { data, error } = await supabase.from('blog_tags').insert(input).select().single()
@@ -95,8 +90,7 @@ export async function clientDeleteBlogTag(id: string): Promise<void> {
 
 export async function clientGetNewsletterSubscribers(): Promise<NewsletterSubscriber[]> {
   if (useMock) {
-    const { getNewsletterSubscribers } = await import('./blog')
-    return getNewsletterSubscribers()
+    return mockSubscribers as NewsletterSubscriber[]
   }
   const supabase = await getClientSupabase()
   const { data, error } = await supabase.from('newsletter_subscribers').select('*').order('subscribed_at', { ascending: false })
