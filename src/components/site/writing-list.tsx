@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { getWritings } from "@/lib/data"
 import Link from "next/link"
 import { Clock, Calendar, Search } from "lucide-react"
 import { readingTime, formatDateShort } from "@/lib/content-utils"

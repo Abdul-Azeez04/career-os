@@ -1,7 +1,7 @@
 import {
   getSiteConfig, getProjects, getWritings, getTestimonials, getSkillsByCategory
 } from "@/lib/data"
-import { Navbar } from "@/components/site/navbar"
+import Navbar from "@/components/site/navbar"
 import { Footer } from "@/components/site/footer"
 import { Hero } from "@/components/site/hero"
 import { ProjectCard } from "@/components/site/project-card"
