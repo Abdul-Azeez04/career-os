@@ -41,7 +41,8 @@ export async function clientGetSiteConfig(): Promise<SiteConfig> {
 export async function clientUpdateSiteConfig(updates: SiteConfigUpdate): Promise<SiteConfig> {
   if (useMock) return { ...mockSiteConfig, ...updates } as SiteConfig
   const supabase = getClientSupabase()
-  const { data, error } = await supabase.from('site_config').update({ ...updates, updated_at: new Date().toISOString() }).select().single()
+  const existing = await clientGetSiteConfig()
+  const { data, error } = await supabase.from('site_config').update({ ...updates, updated_at: new Date().toISOString() }).eq('id', existing.id).select().single()
   if (error) throw error
   return data as SiteConfig
 }
