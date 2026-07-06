@@ -32,11 +32,10 @@ export async function submitContactForm(prevState: any, formData: FormData) {
     // Attempt to save to DB
     try {
       const supabase = await createClient()
-      const { error: dbError } = await supabase.from('messages').insert({
-        sender_name: validated.data.name,
-        sender_email: validated.data.email,
-        subject: validated.data.subject || null,
-        body: validated.data.message,
+      const { error: dbError } = await supabase.from('contact_messages').insert({
+        name: validated.data.name,
+        email: validated.data.email,
+        message: `${validated.data.subject ? `[Subject: ${validated.data.subject}]\n\n` : ''}${validated.data.message}`,
         status: 'new'
       })
       
