@@ -7,7 +7,7 @@ const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
 export async function adminUpdateSiteConfig(updates: any) {
   if (!supabaseUrl || !supabaseServiceKey) {
-    throw new Error("Missing Supabase credentials")
+    return { error: "Missing SUPABASE_SERVICE_ROLE_KEY in Vercel environment variables." }
   }
   
   const supabase = createClient(supabaseUrl, supabaseServiceKey)
@@ -21,8 +21,8 @@ export async function adminUpdateSiteConfig(updates: any) {
     .single()
     
   if (error) {
-    throw new Error(error.message)
+    return { error: error.message }
   }
   
-  return data
+  return { data }
 }

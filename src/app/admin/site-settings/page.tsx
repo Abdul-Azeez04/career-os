@@ -22,9 +22,13 @@ export default function SiteSettings() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault(); setSaving(true)
     try {
-      await adminUpdateSiteConfig(config)
-      toast.success("Settings saved")
-    } catch (e: any) { toast.error("Save failed: " + e.message) }
+      const result = await adminUpdateSiteConfig(config)
+      if (result.error) {
+        toast.error("Save failed: " + result.error)
+      } else {
+        toast.success("Settings saved")
+      }
+    } catch (e: any) { toast.error("Unexpected error: " + e.message) }
     finally { setSaving(false) }
   }
 
