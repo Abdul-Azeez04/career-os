@@ -59,11 +59,11 @@ export default function MessagesAdmin() {
               <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-4">
                 <div>
                   <div className="flex items-center gap-3 mb-1">
-                    <span className="font-bold text-lg">{msg.sender_name}</span>
+                    <span className="font-bold text-lg">{msg.name}</span>
                     <span className="text-sm font-mono text-muted-foreground bg-secondary px-2 py-0.5 rounded">{msg.status}</span>
                   </div>
                   <div className="text-sm text-primary font-medium">
-                    <a href={`mailto:${msg.sender_email}`}>{msg.sender_email}</a>
+                    <a href={`mailto:${msg.email}`}>{msg.email}</a>
                   </div>
                 </div>
                 <div className="text-sm text-muted-foreground font-mono">
@@ -71,10 +71,8 @@ export default function MessagesAdmin() {
                 </div>
               </div>
               
-              {msg.subject && <h4 className="font-medium text-foreground mb-2">Subj: {msg.subject}</h4>}
-              
               <div className="bg-background border border-border p-4 rounded-lg text-sm text-muted-foreground whitespace-pre-wrap leading-relaxed">
-                {msg.body}
+                {msg.message}
               </div>
 
               <div className="flex justify-end gap-2 mt-4 pt-4 border-t border-border">
