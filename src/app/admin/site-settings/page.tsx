@@ -1,7 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { clientGetSiteConfig, clientUpdateSiteConfig } from "@/lib/data/client"
+import { adminUpdateSiteConfig } from "@/app/actions/admin"
+import { clientGetSiteConfig } from "@/lib/data/client"
 import { toast } from "sonner"
 import { Save } from "lucide-react"
 import { FormField, Input, Textarea } from "@/components/admin/modal"
@@ -21,9 +22,9 @@ export default function SiteSettings() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault(); setSaving(true)
     try {
-      await clientUpdateSiteConfig(config)
+      await adminUpdateSiteConfig(config)
       toast.success("Settings saved")
-    } catch { toast.error("Save failed") }
+    } catch (e: any) { toast.error("Save failed: " + e.message) }
     finally { setSaving(false) }
   }
 
