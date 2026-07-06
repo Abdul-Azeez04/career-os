@@ -4,6 +4,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/site/theme-provider"
 import { Toaster } from "sonner"
 
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: "Abdul-Azeez — Full-Stack AI Developer & Author",
   description: "Full-Stack AI Developer specializing in Next.js, TypeScript, and AI integrations. Author of the Remnants series.",
