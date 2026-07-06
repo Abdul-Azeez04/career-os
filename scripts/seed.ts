@@ -1,40 +1,75 @@
-// @ts-nocheck
-import { createAdminClient } from '../src/lib/supabase/admin'
-import * as fs from 'fs'
-import * as path from 'path'
+import { createClient } from '@supabase/supabase-js'
+import {
+  mockSiteConfig,
+  mockExperiences,
+  mockCertifications,
+  mockSkills,
+  mockProjects,
+  mockWritings,
+  mockTestimonials,
+  mockBlogPosts,
+  mockBlogTags
+} from '../src/lib/data/mock-data'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+if (!supabaseUrl || !supabaseServiceKey) {
+  console.error('Missing Supabase credentials in .env.local')
+  process.exit(1)
+}
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 async function seed() {
-  console.log('Starting seed process...')
-  
-  const ownerDataPath = path.join(__dirname, 'owner.json')
-  if (!fs.existsSync(ownerDataPath)) {
-    console.error('owner.json not found in scripts directory.')
-    process.exit(1)
+  console.log('Seeding Supabase with mock data...')
+
+  // 1. Site Config
+  console.log('Seeding site_config...')
+  const { data: existingConfig } = await supabase.from('site_config').select('id').limit(1).single()
+  if (existingConfig) {
+    await supabase.from('site_config').update({ ...mockSiteConfig, id: existingConfig.id }).eq('id', existingConfig.id)
+  } else {
+    await supabase.from('site_config').insert(mockSiteConfig)
   }
 
-  const data = JSON.parse(fs.readFileSync(ownerDataPath, 'utf8'))
-  const supabase = createAdminClient()
+  // 2. Clear existing dynamic tables
+  console.log('Clearing existing data...')
+  await supabase.from('experience').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('certifications').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('skills').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('projects').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('writing').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('testimonials').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('blog_posts').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('blog_tags').delete().neq('id', '00000000-0000-0000-0000-000000000000')
 
-  console.log('Upserting site_config...')
-  // We just clear and insert to ensure 1 row
-  await supabase.from('site_config').delete().neq('id', '00000000-0000-0000-0000-000000000000') // delete all
-  const { error: siteError } = await supabase.from('site_config').insert(data.site_config)
-  if (siteError) console.error('Error inserting site_config:', siteError)
+  // 3. Insert mock data
+  console.log('Inserting experiences...')
+  await supabase.from('experience').insert(mockExperiences)
 
-  const tables = ['experience', 'certifications', 'skills', 'projects', 'writing', 'testimonials']
-  
-  for (const table of tables) {
-    if (data[table] && Array.isArray(data[table])) {
-      console.log(`Upserting ${table}...`)
-      await supabase.from(table).delete().neq('id', '00000000-0000-0000-0000-000000000000')
-      if (data[table as keyof typeof data].length > 0) {
-        const { error } = await supabase.from(table).insert(data[table as keyof typeof data] as any)
-        if (error) console.error(`Error inserting ${table}:`, error)
-      }
-    }
-  }
+  console.log('Inserting certifications...')
+  await supabase.from('certifications').insert(mockCertifications)
 
-  console.log('Seed completed successfully.')
+  console.log('Inserting skills...')
+  await supabase.from('skills').insert(mockSkills)
+
+  console.log('Inserting projects...')
+  await supabase.from('projects').insert(mockProjects)
+
+  console.log('Inserting writing...')
+  await supabase.from('writing').insert(mockWritings)
+
+  console.log('Inserting testimonials...')
+  await supabase.from('testimonials').insert(mockTestimonials)
+
+  console.log('Inserting blog posts...')
+  await supabase.from('blog_posts').insert(mockBlogPosts)
+
+  console.log('Inserting blog tags...')
+  await supabase.from('blog_tags').insert(mockBlogTags)
+
+  console.log('✅ Seeding complete!')
 }
 
 seed().catch(console.error)
