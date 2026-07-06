@@ -4,7 +4,7 @@
 import type { BlogPost, BlogTag, NewsletterSubscriber } from './blog'
 import { mockBlogPosts, mockBlogTags, mockSubscribers } from './mock-data'
 
-const useMock = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true'
+const useMock = false
 
 async function getClientSupabase() {
   const { createBrowserClient } = await import('@supabase/ssr')

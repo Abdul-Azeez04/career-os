@@ -21,7 +21,7 @@ import {
   mockTestimonials, mockMessages,
 } from './mock-data'
 
-const useMock = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true'
+const useMock = false
 
 // ── Helper: get server Supabase client (lazy import to avoid errors in mock mode) ──
 async function getSupabase() {

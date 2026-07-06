@@ -48,7 +48,7 @@ export type BlogPostInsert = Omit<BlogPost, 'id' | 'created_at' | 'updated_at' |
 
 import { mockBlogPosts, mockBlogTags, mockSubscribers } from './mock-data'
 
-const useMock = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true'
+const useMock = false
 
 async function getSupabase() {
   const { createClient } = await import('@/lib/supabase/server')

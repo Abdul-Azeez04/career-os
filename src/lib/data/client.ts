@@ -20,7 +20,7 @@ import {
   mockTestimonials, mockMessages,
 } from './mock-data'
 
-const useMock = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true'
+const useMock = false
 
 // Helper: get browser Supabase client (no next/headers dependency)
 function getClientSupabase() {
